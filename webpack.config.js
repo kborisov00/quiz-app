@@ -39,6 +39,17 @@ module.exports = {
   // modules configuration
   module: {
     rules: [
+      // html rules
+      {
+        test: /\.html%/,
+        use: [
+          {
+            loader: 'html-loader',
+            options: {minimize: true}
+          }
+        ]
+      },
+
       // javascript rules
       {
         test: /\.(js)$/,
@@ -50,8 +61,8 @@ module.exports = {
       {
         test: /.(scss|css)$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader },
-          { loader: "style-loader" },
+          MiniCssExtractPlugin.loader,
+
           {
             loader: "css-loader",
             options: {
