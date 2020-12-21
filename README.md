@@ -21,6 +21,6 @@
 * code should be clean, formatted, structured, commented, with linters/hinters
 
 ### Each day:
-* Post a progress screenshot + URL + information on where you are at, what you will tackle for the day. 
+* Post a progress screenshot, demo, repo and information on where you are at, what you will tackle for the day. 
 * You can post questions and request for directions all the time.
 * We will review the code/app every couple days.
