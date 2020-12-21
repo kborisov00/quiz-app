@@ -1,4 +1,4 @@
-# Quiz Application
+# Quiz Application 🚀
 
 > A Mobile/Tablet web app where users can pick a quiz and solve it. They will get points along the way and receive a score in the end.
 
