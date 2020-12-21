@@ -1,89 +1,76 @@
+// dependencies
 const path = require('path');
 const webpack = require('webpack');
 
-
-
-
-/*
- * SplitChunksPlugin is enabled by default and replaced
- * deprecated CommonsChunkPlugin. It automatically identifies modules which
- * should be splitted of chunk by heuristics using module duplication count and
- * module category (i. e. node_modules). And splits the chunks…
- *
- * It is safe to remove "splitChunks" from the generated configuration
- * and was added as an educational example.
- *
- * https://webpack.js.org/plugins/split-chunks-plugin/
- *
- */
-
-/*
- * We've enabled MiniCssExtractPlugin for you. This allows your app to
- * use css modules that will be moved into a separate CSS file instead of inside
- * one of your module entries!
- *
- * https://github.com/webpack-contrib/mini-css-extract-plugin
- *
- */
-
+// plugins
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-
-
-
-/*
- * We've enabled TerserPlugin for you! This minifies your app
- * in order to load faster and run less javascript.
- *
- * https://github.com/webpack-contrib/terser-webpack-plugin
- *
- */
-
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
-
+// constants
+const SOURCE_DIRECTORY = path.join(__dirname, 'src');
+const ENTRY_JS_FILE = 'index.js';
+const ENTRY_HTML_FILE = 'index.html';
 
 module.exports = {
+  // chosen mode tells webpack to use its built-in optimizations accordingly.
   mode: 'development',
 
+  // here the application starts executing
+  // and webpack starts bundling
   entry: {
-    index: './src/index.js'
+    index: path.join(SOURCE_DIRECTORY, ENTRY_JS_FILE)
   },
 
+  // list of additional plugins
   plugins: [
     new webpack.ProgressPlugin(),
-    new MiniCssExtractPlugin({ filename:'style.[chunkhash].css' })
+    new MiniCssExtractPlugin({ filename:'style.[chunkhash].css' }),
+    new HtmlWebpackPlugin({
+      template: path.join(SOURCE_DIRECTORY, ENTRY_HTML_FILE),
+      filename: ENTRY_HTML_FILE,
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      }
+    }),
   ],
 
+  // modules configuration
   module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      include: [path.resolve(__dirname, 'src')],
-      loader: 'babel-loader'
-    }, {
-      test: /.(scss|css)$/,
+    rules: [
+      // javascript rules
+      {
+        test: /\.(js)$/,
+        include: [SOURCE_DIRECTORY],
+        use: ['babel-loader', 'eslint-loader']
+      },
 
-      use: [{
-        loader: MiniCssExtractPlugin.loader
-      }, {
-        loader: "style-loader"
-      }, {
-        loader: "css-loader",
+      // scss/css rules
+      {
+        test: /.(scss|css)$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: "style-loader" },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          },
 
-        options: {
-          sourceMap: true
-        }
-      }, {
-        loader: "sass-loader",
-
-        options: {
-          sourceMap: true
-        }
-      }]
-    }]
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+      }
+    ]
   },
 
+  // optimization configuration
   optimization: {
     minimizer: [new TerserPlugin()],
 
