@@ -5,12 +5,23 @@ const webpack = require('webpack');
 // plugins
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // constants
 const SOURCE_DIRECTORY = path.join(__dirname, 'src');
 const ENTRY_JS_FILE = 'index.js';
 const ENTRY_HTML_FILE = 'index.html';
+
+// html plugin
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+let htmlPageNames = ['screens/game']; // every html page path in my project
+let multipleHtmlPluginInstances = htmlPageNames.map(name => {
+  return new HtmlWebpackPlugin({
+    template: `./src/${name}.html`, // relative path to the HTML files
+    filename: `${name}.html`, // output HTML files
+    chunks: ['index'] // respective JS files
+  })
+});
 
 module.exports = {
   // chosen mode tells webpack to use its built-in optimizations accordingly.
@@ -19,7 +30,7 @@ module.exports = {
   // here the application starts executing
   // and webpack starts bundling
   entry: {
-    index: path.join(SOURCE_DIRECTORY, ENTRY_JS_FILE)
+    index: path.join(SOURCE_DIRECTORY, ENTRY_JS_FILE),
   },
 
   // list of additional plugins
@@ -28,13 +39,12 @@ module.exports = {
     new MiniCssExtractPlugin({ filename:'style.[chunkhash].css' }),
     new HtmlWebpackPlugin({
       template: path.join(SOURCE_DIRECTORY, ENTRY_HTML_FILE),
-      filename: ENTRY_HTML_FILE,
       minify: {
         collapseWhitespace: true,
         removeComments: true
       }
-    }),
-  ],
+    })
+  ].concat(multipleHtmlPluginInstances),
 
   // modules configuration
   module: {
