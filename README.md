@@ -24,3 +24,8 @@
 * Post a progress screenshot, demo, repo and information on where you are at, what you will tackle for the day. 
 * You can post questions and request for directions all the time.
 * We will review the code/app every couple days.
+
+### Reference:
+[link 1](https://dribbble.com/shots/14079869-Trivia-360)
+[link 2](https://dribbble.com/shots/10453275-Quiz-app)
+[link 3](https://dribbble.com/shots/6969870-Programing-Language-Courses-Quiz-App)
