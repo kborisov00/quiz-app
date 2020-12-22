@@ -28,4 +28,6 @@
 ### Reference:
 * [https://dribbble.com/shots/14079869-Trivia-360](https://dribbble.com/shots/14079869-Trivia-360)
 * [https://dribbble.com/shots/10453275-Quiz-app](https://dribbble.com/shots/10453275-Quiz-app)
-* [https://dribbble.com/shots/6969870-Programing-Language-Courses-Quiz-App](https://dribbble.com/shots/6969870-Programing-Language-Courses-Quiz-App)
+* [https://dribbble.com/shots/6969870-Programing-Language-Courses-Quiz-App](https://dribbble.com/shots/6969870-Programing-Language-Courses-Quiz-App)  
+
+##### You can use the above designs for direction, use the first one mainly for the overal look and feel, colors, spacing etc. You can ask me directly for more information.
