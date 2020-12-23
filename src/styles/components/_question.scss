@@ -11,33 +11,39 @@
     flex: 1;
 
     &__counter {
+        padding: 5px 20px;
+
         position: absolute;
-        top: calc(-0.4rem - 10px);
+        top: calc(-8px - 10px);
         left: 50%;
         transform: translateX(-50%);
+
         background: #fff;
+
+        font-size: 16px;
         color: $primary-color;
         font-weight: bold;
-        padding: 5px 20px;
+
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0,0,0,.1);
-        font-size: .8rem;
     }
 
     &__icon {
         height: 30px;
         width: 30px;
         line-height: 30px;
-        text-align: center;
+        
         position: absolute;
+        left: 50%;
         bottom: -15px;
+        transform: translateX(-50%);
         border-radius: 50%;
+
         color: $primary-color;
         font-weight: bold;
-        box-shadow: 0 0 10px rgba(0,0,0,.1);
+        text-align: center;
 
         background: #fff;
-        left: 50%;
-        transform: translateX(-50%);
+        box-shadow: 0 0 10px rgba(0,0,0,.1);
     }
 }
