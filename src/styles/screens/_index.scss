@@ -1,24 +1,3 @@
-$primary-color: #41a18b;
-@import './styles/game.scss';
-
-
-* {box-sizing: border-box;}
-
-body,
-html {
-    height: 100%;
-    width: 100%;
-    font-family: 'Open Sans', sans-serif;
-}
-
-body,
-html,
-h1,
-p {
-    margin: 0;
-    padding: 0;
-}
-
 .welcome-section {
     height: 100vh;
     width: 100%;

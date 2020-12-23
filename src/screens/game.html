@@ -5,45 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar">
+    <!-- navbar component -->
+    <%= require('html-loader!./components/navbar.html') %>
 
-        <div class="navbar__user">
-
-            <i class="navbar__user-icon fas fa-user"></i>
-
-            <div class="navbar__user-info">
-                <p class="navbar__user-name">Klenki Klenk</p>
-                <p class="navbar__user-score">273</p>
-            </div>
-
-        </div> <!-- navbar__user -->
-
-        <div class="navbar__time">
-            <i class="navbar__time-icon far fa-clock"></i>
-            <p class="navbar__time-text">34</p> 
-        </div>
-
-    </div> <!-- navbar -->
-
-
-    <div class="main">
-
-        <div class="main__question">
-            <p class="main__question-count">3/5</p>
-            <p class="main__question-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, quo!</p>
-            <p class="main__question-icon">?</p>
-        </div>
-
-        <div class="main__buttons">
-            <button class="main__buttons-button right">Lorem, ipsum.</button>
-            <button class="main__buttons-button">Lorem, ipsum.</button>
-            <button class="main__buttons-button wrong">Lorem, ipsum.</button>
-            <button class="main__buttons-button">Lorem, ipsum.</button>
-        </div>
+    <!-- quiz block -->
+    <div class="quiz">
+        <!-- question component -->
+        <%= require('html-loader!./components/question.html') %>
+        <!-- buttons component -->
+        <%= require('html-loader!./components/buttons.html') %>
     </div>
 </body>
 </html>

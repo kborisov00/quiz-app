@@ -1,0 +1,22 @@
+.btn {
+    padding: .7rem 0;
+    border: 1.5px solid $primary-color;
+    border-radius: 8px;
+
+    font-size: 1.1rem;
+    color: $primary-color; 
+    font-weight: bold;
+
+    background: none;
+
+    &--right {
+        background: $primary-color;
+        color: #fff;
+    }
+
+    &--wrong {
+        border-color: #e94f4f;
+        background: #e94f4f;
+        color: #fff;
+    }
+}

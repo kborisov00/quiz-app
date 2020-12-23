@@ -1,0 +1,16 @@
+// colors
+$primary-color: #41a18b;
+
+// base
+@import './utilities';
+@import './reset';
+
+// components
+@import './components/navbar';
+@import './components/question';
+@import './components/btn';
+
+// screens
+@import './screens/game';
+@import './screens/index';
+

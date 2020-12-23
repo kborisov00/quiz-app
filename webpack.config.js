@@ -6,22 +6,21 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-// constants
-const SOURCE_DIRECTORY = path.join(__dirname, 'src');
-const ENTRY_JS_FILE = 'index.js';
-const ENTRY_HTML_FILE = 'index.html';
-
 // html plugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-let htmlPageNames = ['screens/game']; // every html page path in my project
+let htmlPageNames = ['game']; // every html page path in my project
 let multipleHtmlPluginInstances = htmlPageNames.map(name => {
   return new HtmlWebpackPlugin({
-    template: `./src/${name}.html`, // relative path to the HTML files
-    filename: `${name}.html`, // output HTML files
+    template: `./src/screens/${name}.html`, // relative path to the HTML files
+    filename: `./screens/${name}.html`, // output HTML files
     chunks: ['index'] // respective JS files
   })
 });
+
+// constants
+const SOURCE_DIRECTORY = path.join(__dirname, 'src');
+const ENTRY_JS_FILE_PATH = 'index.js';
+const ENTRY_HTML_FILE_PATH = 'screens/index.html';
 
 module.exports = {
   // chosen mode tells webpack to use its built-in optimizations accordingly.
@@ -30,15 +29,15 @@ module.exports = {
   // here the application starts executing
   // and webpack starts bundling
   entry: {
-    index: path.join(SOURCE_DIRECTORY, ENTRY_JS_FILE),
+    index: path.join(SOURCE_DIRECTORY, ENTRY_JS_FILE_PATH),
   },
 
   // list of additional plugins
   plugins: [
     new webpack.ProgressPlugin(),
-    new MiniCssExtractPlugin({ filename:'style.[chunkhash].css' }),
+    new MiniCssExtractPlugin({ filename:'style.css' }),
     new HtmlWebpackPlugin({
-      template: path.join(SOURCE_DIRECTORY, ENTRY_HTML_FILE),
+      template: path.join(SOURCE_DIRECTORY, ENTRY_HTML_FILE_PATH),
       minify: {
         collapseWhitespace: true,
         removeComments: true
