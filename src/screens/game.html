@@ -8,14 +8,40 @@
 </head>
 <body>
     <!-- navbar component -->
-    <%= require('html-loader!./components/navbar.html') %>
+    <div class="navbar">
+        <div class="navbar__user">
+
+            <i class="navbar__user-icon fas fa-user"></i>
+
+            <div class="navbar__user-info">
+                <p class="navbar__user-name">Klenki Klenk</p>
+                <p class="navbar__user-score">273</p>
+            </div>
+
+        </div>
+
+        <div class="navbar__time">
+            <i class="navbar__time-icon far fa-clock"></i>
+            <p class="navbar__time-text">34</p> 
+        </div>
+    </div> <!-- navbar component -->
 
     <!-- quiz block -->
     <div class="quiz">
         <!-- question component -->
-        <%= require('html-loader!./components/question.html') %>
+        <div class="question">
+            <p class="question__counter">3/5</p>
+            <p class="question__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, quo!</p>
+            <p class="question__icon">?</p>
+        </div> <!-- question component -->
+
         <!-- buttons component -->
-        <%= require('html-loader!./components/buttons.html') %>
+        <div class="flex flex--col flex--end gap-y">
+            <button class="btn btn--right">Lorem, ipsum.</button>
+            <button class="btn">Lorem, ipsum.</button>
+            <button class="btn btn--wrong">Lorem, ipsum.</button>
+            <button class="btn">Lorem, ipsum.</button>
+        </div> <!-- buttons component-->
     </div>
 </body>
 </html>
