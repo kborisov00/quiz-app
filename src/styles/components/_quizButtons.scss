@@ -1,0 +1,8 @@
+.quizButtons {
+    display: flex;
+    flex-direction: column;
+
+    & > .btn:not(:last-child) {
+        margin-bottom: 15px;
+    }
+}

@@ -15,14 +15,14 @@
         color: #fff;
 
         // user icon
-        &-icon {
+        &Icon {
             margin-right: 15px;
             font-size: 35px;
             line-height: 1;
         }
 
         // user info block wrapper
-        &-info {
+        &Info {
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -30,18 +30,18 @@
         }
 
         // user name text
-        &-name {
+        &Name {
             line-height: .9;
         }
 
         // user score
-        &-score {
+        &Score {
             color: #ebd963;
             font-weight: bold;
             line-height: .9;
         }
 
-        &-name, &-score { font-size: 1rem; }
+        &Name, &Score { font-size: 1rem; }
     }
 
     // time block wrapper
@@ -53,12 +53,12 @@
         color: #fff;
 
         // time clock icon
-        &-icon {
+        &Icon {
             font-size: 1rem;
         }
 
         // time text - seconds
-        &-text {
+        &Text {
             line-height: .8;
             font-size: 1rem;
             font-weight: bold;
