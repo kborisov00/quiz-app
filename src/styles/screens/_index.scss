@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 1.6rem;
-    background: $primary-color;
+    background: $colorPrimary;
 
     &__header {
         color: #fff;
@@ -19,7 +19,7 @@
         background-color: #fff; 
         font-weight: bold;
         border-radius: 5px;
-        color: $primary-color;
+        color: $colorPrimary;
         box-shadow: 0 5px 10px rgba(0,0,0,.1);
         text-decoration: none;
         text-align: center;

@@ -1,16 +1,16 @@
 .btn {
     padding: .7rem 0;
-    border: 1.5px solid $primary-color;
+    border: 1.5px solid $colorPrimary;
     border-radius: 8px;
 
     font-size: 1.1rem;
-    color: $primary-color; 
+    color: $colorPrimary; 
     font-weight: bold;
 
     background: none;
 
     &--right {
-        background: $primary-color;
+        background: $colorPrimary;
         color: #fff;
     }
 

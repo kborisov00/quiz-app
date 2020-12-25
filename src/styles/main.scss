@@ -1,15 +1,13 @@
-// colors
-$primary-color: #41a18b;
-
 // base
-@import './reset';
+@import 'reset';
+@import 'variables';
 
 // components
-@import './components/navbar';
-@import './components/question';
-@import './components/btn';
+@import 'components/navbar';
+@import 'components/question';
+@import 'components/btn';
 
 // screens
-@import './screens/game';
-@import './screens/index';
+@import 'screens/game';
+@import 'screens/index';
 
