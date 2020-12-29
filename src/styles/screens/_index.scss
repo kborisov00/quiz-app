@@ -1,10 +1,12 @@
 .welcomeSection {
     height: 100vh;
     width: 100%;
+    padding: 1.6rem;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1.6rem;
+
     background: $colorPrimary;
 
     &__header {
@@ -12,6 +14,7 @@
         text-align: center;
     }
 
+    // extend .button
     &__startButton {
         width: 100%;    
         padding: 1rem 0;
