@@ -3,8 +3,8 @@
     padding: 0 $margin; // padding X
     margin-bottom: $margin;
 
-    background: #ffe185;
-    border-radius: 5px;
+    background: $colorAccent;
+    border-radius: .25em;
 
     flex: 1;
     display: flex;
@@ -13,19 +13,18 @@
 
     &__counter {
         position: absolute;
-        padding: 5px $margin;
+        padding: .375em $margin;
 
-        top: -13px; // height + padding = 26px / 2 = 13px
+        top: -11px; // height + padding = 22px / 2 = 11px
         left: 50%;
         transform: translateX(-50%);
 
         background: #fff;
 
         color: $colorPrimary;
-        font-size: 16px;
         font-weight: bold;
 
-        border-radius: 5px;
+        border-radius: .25em;
         box-shadow: 0 0 10px rgba(0,0,0,.1);
     }
 
