@@ -29,19 +29,18 @@
             justify-content: space-between;
         }
 
-        // user name text
-        &Name {
-            line-height: .9;
-        }
-
         // user score
         &Score {
             color: #ebd963;
             font-weight: bold;
-            line-height: .9;
         }
 
-        &Name, &Score { font-size: 1rem; }
+        // user name and score
+        &Name,
+        &Score {
+            font-size: 1rem;
+            line-height: .8;
+        }
     }
 
     // time block wrapper
