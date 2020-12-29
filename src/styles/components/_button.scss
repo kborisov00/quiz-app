@@ -3,20 +3,20 @@
     border: 1.5px solid $colorPrimary;
     border-radius: 8px;
 
-    font-size: 1.1rem;
     color: $colorPrimary; 
+    font-size: 1.1rem;
     font-weight: bold;
 
     background: none;
 
     &--correct {
-        background: $colorPrimary;
         color: #fff;
+        background: $colorPrimary;
     }
 
     &--wrong {
-        border-color: #e94f4f;
-        background: #e94f4f;
         color: #fff;
+        background: $colorDanger;
+        border-color: $colorDanger;
     }
 }
