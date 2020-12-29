@@ -14,7 +14,7 @@ let multipleHtmlPluginInstances = htmlPageNames.map(name => {
     template: `./src/screens/${name}.html`, // relative path to the HTML files
     filename: `./screens/${name}.html`, // output HTML files
     chunks: ['index'] // respective JS files
-  })
+  });
 });
 
 // constants
