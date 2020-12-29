@@ -13,6 +13,7 @@ let multipleHtmlPluginInstances = htmlPageNames.map(name => {
   return new HtmlWebpackPlugin({
     template: `./src/screens/${name}.html`, // relative path to the HTML files
     filename: `./screens/${name}.html`, // output HTML files
+    layout: './src/index.html', // html layout file
     chunks: ['index'] // respective JS files
   });
 });
@@ -35,15 +36,19 @@ module.exports = {
   // list of additional plugins
   plugins: [
     new webpack.ProgressPlugin(),
+
     new MiniCssExtractPlugin({ filename:'style.css' }),
+
     new HtmlWebpackPlugin({
       template: path.join(SOURCE_DIRECTORY, ENTRY_HTML_FILE_PATH),
       minify: {
         collapseWhitespace: true,
         removeComments: true
       }
-    })
-  ].concat(multipleHtmlPluginInstances),
+    }),
+
+    ...multipleHtmlPluginInstances, // every html file instance
+  ],
 
   // modules configuration
   module: {

@@ -1,19 +1,20 @@
 .question {
     position: relative;
+    padding: 0 $margin; // padding X
+    margin-bottom: $margin;
+
     background: #ffe185;
     border-radius: 5px;
-    padding: 0 20px;
-    margin-bottom: 20px;
 
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
 
     &__counter {
-        padding: 5px 20px;
-
         position: absolute;
+        padding: 5px $margin;
+
         top: -13px; // height + padding = 26px / 2 = 13px
         left: 50%;
         transform: translateX(-50%);
@@ -33,21 +34,23 @@
     }
 
     &__icon {
-        height: 30px;
-        width: 30px;
-        line-height: 30px;
+        $size: 30px; // icon size
+
+        height: $size;
+        width: $size;
+        line-height: $size;
         
         position: absolute;
         left: 50%;
         bottom: -15px;
         transform: translateX(-50%);
-        border-radius: 50%;
 
         color: $colorPrimary;
         font-weight: bold;
         text-align: center;
 
         background: #fff;
+        border-radius: 50%;
         box-shadow: 0 0 10px rgba(0,0,0,.1);
     }
 }

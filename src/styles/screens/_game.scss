@@ -1,5 +1,5 @@
 .quiz {
-    padding: 1.2rem;
+    padding: $margin;
     height: calc(100vh - 60px);
 
     display: flex;
@@ -10,8 +10,8 @@
         display: flex;
         flex-direction: column;
 
-        & > *:not(:last-child) {
-            margin-bottom: 15px;
+        & > .button:not(:last-child) {
+            margin-bottom: $margin;
         }
     }
 }
