@@ -10,5 +10,5 @@ import './styles/main.scss'; // styles
 const INITIAL_TIME_SECONDS = 10;
 const DECREMENT_VALUE_SECONDS = 1;
 
-const timer = new Timer(INITIAL_TIME_SECONDS, DECREMENT_VALUE_SECONDS);
-timer.init();
+// eslint-disable-next-line no-unused-vars
+const timer = new Timer(INITIAL_TIME_SECONDS, DECREMENT_VALUE_SECONDS); // eslint-disable-line max-len

@@ -9,7 +9,7 @@ export default class Timer {
   }
 
   /**
-   * class methods
+   * @desc this function clears the interval
    */
   clearTime() {
     clearInterval(this.interval);
