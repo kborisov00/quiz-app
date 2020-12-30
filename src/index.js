@@ -2,18 +2,16 @@
 import regeneratorRuntime from 'regenerator-runtime'; // eslint-disable-line no-unused-vars
 
 // modules
-import Timer from './js/Timer';
-import Quiz from './js/Quiz'; // eslint-disable-line no-unused-vars
+import Timer from './js/classes/Timer';
+import Quiz from './js/classes/Quiz'; // eslint-disable-line no-unused-vars
 import nodes from './js/nodes';
 import './styles/main.scss'; // styles
 
-// timer constants
-const INITIAL_TIME_SECONDS = 10;
-const DECREMENT_VALUE_SECONDS = 1;
+import { timerConfig } from './js/config';
 
 const timer = new Timer({
-  initialTimeSeconds: INITIAL_TIME_SECONDS,
-  decrementValueSeconds: DECREMENT_VALUE_SECONDS,
+  initialTimeSeconds: timerConfig.INITIAL_TIME,
+  decrementValueSeconds: timerConfig.DECREMENT_VALUE,
   timeNode: nodes.timeNode,
 });
 
