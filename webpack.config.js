@@ -64,12 +64,6 @@ module.exports = {
         ]
       },
 
-      // ejs rules
-      {
-        test: /\.ejs$/,
-        loader: 'ejs-loader'
-      },
-
       // javascript rules
       {
         test: /\.(js)$/,

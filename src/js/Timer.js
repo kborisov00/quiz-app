@@ -1,11 +1,14 @@
 export default class Timer {
-  constructor(initialTimeSeconds, decrementValueSeconds) {
-    this.initialTimeSeconds = initialTimeSeconds;
-    this.decrementValueSeconds = decrementValueSeconds;
-    this.decrementValueMilliseconds = this.decrementValueSeconds * 1000;
+  constructor(config) {
+    this.timeNode = config.timeNode;
+    this.initialTimeSeconds = config.initialTimeSeconds;
+    this.decrementValueSeconds = config.decrementValueSeconds;
 
+    this.decrementValueMilliseconds = this.decrementValueSeconds * 1000;
     this.counter = this.initialTimeSeconds;
     this.interval = null;
+
+    this.timeNode.innerText = this.initialTimeSeconds;
   }
 
   /**
@@ -25,6 +28,7 @@ export default class Timer {
   async decrementTime(callback) {
     if (this.counter > 0) {
       this.counter -= this.decrementValueSeconds;
+      this.timeNode.innerText = this.counter;
     } else {
       this.clearTime();
       callback();
@@ -38,7 +42,9 @@ export default class Timer {
    * @param {callback} callback 
    */
   async startTimer(callback) {
-    this.interval = setInterval(() => this.decrementTime(() => callback()), this.decrementValueMilliseconds); // eslint-disable-line max-len
+    this.interval = setInterval(() => {
+      this.decrementTime(() => callback());
+    }, this.decrementValueMilliseconds);
   }
 
   /**

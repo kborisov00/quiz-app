@@ -3,5 +3,9 @@
     "extends": ["airbnb"],
     "rules": {
         "no-trailing-spaces": "off"
+    },
+    "env": {
+        "browser": true,
+        "node": true
     }
 }
