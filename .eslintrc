@@ -2,7 +2,8 @@
     "parser": "babel-eslint",
     "extends": ["airbnb"],
     "rules": {
-        "no-trailing-spaces": "off"
+        "no-trailing-spaces": "off",
+        "prefer-destructuring": "off"
     },
     "env": {
         "browser": true,

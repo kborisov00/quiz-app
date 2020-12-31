@@ -8,6 +8,12 @@ export default class Quiz {
     this.baseAPI = apiConfig.base;
     this.numberQuestionsQueryParam = apiConfig.numberQuestionsQueryParam;
     this.questionsTypeQueryParam = apiConfig.questionsTypeQueryParam;
+
+    this.questions = [];
+    this.currentQuestion = null;
+    this.url = this.createURL();
+
+    this.init();
   }
 
   createURL() {
@@ -18,10 +24,44 @@ export default class Quiz {
     return url;
   }
 
-  // async fetchQuestions() {
-  //   const data = await fetch()
-  // }
+  async fetchQuestions(callback) {
+    const response = await fetch(this.url);
+    const data = await response.json();
 
+    if (response.status === 200) {
+      const questions = data.results;
+      this.questions = questions;
+      this.currentQuestion = questions[0];
+
+      return callback();
+    }
+    
+    throw new Error('something went wrong..');
+  }
+
+  prevQuestion() {
+    const currentIndex = this.questions.indexOf(this.currentQuestion);
+    if (currentIndex > 0) {
+      this.currentQuestion = this.questions[currentIndex - 1];
+    } else {
+      throw new Error('This is the last question');
+    }
+  }
+
+  nextQuestion() {
+    const currentIndex = this.questions.indexOf(this.currentQuestion);
+    if (currentIndex < this.numberQuestions - 1) {
+      this.currentQuestion = this.questions[currentIndex + 1];
+    } else {
+      throw new Error('This is the last question');
+    }
+  }
+
+  init() {
+    this.fetchQuestions(() => {
+      // questions are fetched
+    });
+  }
   // startQuiz() {}
 
   // previousQuestion() {}
