@@ -25,6 +25,14 @@ export default class Timer {
   }
 
   /**
+   * @desc this functions resets
+   * the counter to the initial value
+   */
+  resetTime() {
+    this.counter = this.initialTimeSeconds;
+  }
+
+  /**
    * @desc this function decrements
    * the counter and returns a
    * callback on every tick

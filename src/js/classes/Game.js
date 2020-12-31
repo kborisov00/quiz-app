@@ -45,7 +45,7 @@ class Game {
     this.setTimeNode(time);
     
     // if (time < 5) {
-    //   timeWrapper.classList.add('statusbar__time--danger');
+    //   // timeWrapper.classList.add('statusbar__time--danger');
     // }
   }
 
