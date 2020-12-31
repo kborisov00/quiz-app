@@ -30,8 +30,8 @@ class Game {
     this.nodes.counterNode.innerText = `${this.currentQuestion.index + 1} / ${this.quiz.questions.length}`;
   }
 
-  setTimeNode() {
-    this.nodes.timeNode.innerText = this.timer.getInitialTime();
+  setTimeNode(time = this.timer.getInitialTime()) {
+    this.nodes.timeNode.innerText = time;
   }
 
   renderQuestion() {
@@ -40,10 +40,21 @@ class Game {
     this.setTimeNode();
   }
 
+  handleTimer(time) {
+    const timeWrapper = document.getElementById('timeWrapper'); // eslint-disable-line no-unused-vars
+    this.setTimeNode(time);
+    
+    // if (time < 5) {
+    //   timeWrapper.classList.add('statusbar__time--danger');
+    // }
+  }
+
   init() {
     this.quiz.init(() => {
       this.currentQuestion = this.quiz.getCurrentQuestion();
       this.renderQuestion();
+
+      this.timer.startTimer((time) => this.handleTimer(time));
     });
   }
 }
