@@ -1,14 +1,11 @@
 export default class Timer {
   constructor(config) {
-    this.timeNode = config.timeNode;
     this.initialTimeSeconds = config.initialTimeSeconds;
     this.decrementValueSeconds = config.decrementValueSeconds;
 
     this.decrementValueMilliseconds = this.decrementValueSeconds * 1000;
     this.counter = this.initialTimeSeconds;
     this.interval = null;
-
-    this.timeNode.innerText = this.initialTimeSeconds;
   }
 
   /**
@@ -21,31 +18,28 @@ export default class Timer {
 
   /**
    * @desc this function decrements
-   * the counter, updates the
-   * node and returns a callback
-   * when the counter hits zero
+   * the counter and returns a
+   * callback on every tick
    * @param {function} callback 
    */
   async decrementTime(callback) {
     // decrement only if counter is not zero
     if (this.counter > 0) {
       this.counter -= this.decrementValueSeconds;
-      this.timeNode.innerText = this.counter;
+      callback();
     } else {
       this.clearTime();
-      callback();
     }
   }
 
   /**
    * @desc this function returns a callback
-   * when this.decrementTime returns a callback
-   * which means the counter has hit zero
+   * on every tick containing the point of time
    * @param {function} callback 
    */
   async startTimer(callback) {
     this.interval = setInterval(() => {
-      this.decrementTime(() => callback());
+      this.decrementTime(() => callback(this.counter));
     }, this.decrementValueMilliseconds);
   }
 }

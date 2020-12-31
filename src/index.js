@@ -3,16 +3,18 @@ import regeneratorRuntime from 'regenerator-runtime'; // eslint-disable-line no-
 
 // modules
 import Timer from './js/classes/Timer';
-import Quiz from './js/classes/Quiz'; // eslint-disable-line no-unused-vars
+import Quiz from './js/classes/Quiz';
 import nodes from './js/nodes';
-import './styles/main.scss'; // styles
+import './styles/main.scss';
 
-import { timerConfig } from './js/config';
+import { timerConfig, quizConfig } from './js/config';
 
-const timer = new Timer({
-  initialTimeSeconds: timerConfig.INITIAL_TIME,
-  decrementValueSeconds: timerConfig.DECREMENT_VALUE,
-  timeNode: nodes.timeNode,
+const timer = new Timer(timerConfig);
+timer.startTimer((time) => console.log(time));
+
+// eslint-disable-next-line no-unused-vars
+const quiz = new Quiz({
+  questions: quizConfig.questions,
+  questionNode: nodes.questionNode,
+  quizAnswersNode: nodes.quizAnswersNode,
 });
-
-timer.startTimer(() => console.log('has finished'));
