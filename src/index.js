@@ -3,4 +3,4 @@ import regeneratorRuntime from 'regenerator-runtime'; // eslint-disable-line no-
 
 // modules
 import './styles/main.scss';
-import './js/game';
+import './js/classes/Game';

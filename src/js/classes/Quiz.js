@@ -1,4 +1,7 @@
+// dependencies
 import he from 'he';
+
+// config
 import { apiConfig } from '../config';
 
 export default class Quiz {
@@ -82,7 +85,7 @@ export default class Quiz {
   }
 
   getCurrentQuestion() {
-    return this.currentQuestion;
+    return { index: this.questions.indexOf(this.currentQuestion), ...this.currentQuestion };
   }
 
   init(callback) {

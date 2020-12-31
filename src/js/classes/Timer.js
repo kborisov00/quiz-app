@@ -9,6 +9,14 @@ export default class Timer {
   }
 
   /**
+   * @desc this function
+   * returns the initial time
+   */
+  getInitialTime() {
+    return this.initialTimeSeconds;
+  }
+
+  /**
    * @desc this function clears the interval
    */
   clearTime() {
