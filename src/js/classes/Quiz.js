@@ -1,10 +1,11 @@
+import he from 'he';
 import { apiConfig } from '../config';
 
 export default class Quiz {
   constructor(config) {
     this.numberQuestions = config.numberQuestions;
     this.questionsType = config.questionsType;
-    
+
     this.baseAPI = apiConfig.base;
     this.numberQuestionsQueryParam = apiConfig.numberQuestionsQueryParam;
     this.questionsTypeQueryParam = apiConfig.questionsTypeQueryParam;
@@ -14,6 +15,29 @@ export default class Quiz {
     this.url = this.createURL();
 
     this.init();
+  }
+
+  static shuffleArray(array) {
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = shuffledArray[i];
+      shuffledArray[i] = shuffledArray[j];
+      shuffledArray[j] = temp;
+    }
+
+    return shuffledArray;
+  }
+
+  static decodeQuestions(questions) {
+    return questions.map((question) => {
+      const parsedQuestion = { ...question };
+      parsedQuestion.question = he.decode(parsedQuestion.question);
+      parsedQuestion.correct_answer = he.decode(parsedQuestion.correct_answer);
+      parsedQuestion.incorrect_answers.map((answer) => he.decode(answer));
+
+      return parsedQuestion;
+    });
   }
 
   createURL() {
@@ -29,13 +53,13 @@ export default class Quiz {
     const data = await response.json();
 
     if (response.status === 200) {
-      const questions = data.results;
+      const questions = this.constructor.decodeQuestions(data.results);
       this.questions = questions;
       this.currentQuestion = questions[0];
 
       return callback();
     }
-    
+
     throw new Error('something went wrong..');
   }
 
@@ -57,11 +81,14 @@ export default class Quiz {
     }
   }
 
-  init() {
-    this.fetchQuestions(() => {
-      // questions are fetched
-    });
+  getCurrentQuestion() {
+    return this.currentQuestion;
   }
+
+  init(callback) {
+    this.fetchQuestions(() => typeof callback === 'function' && callback());
+  }
+
   // startQuiz() {}
 
   // previousQuestion() {}

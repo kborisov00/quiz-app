@@ -1,8 +1,8 @@
 const nodes = {
-  scoreNode: document.getElementById('score'),
   timeNode: document.getElementById('time'),
+  scoreNode: document.getElementById('score'),
   questionNode: document.getElementById('question'),
-  quizAnswersNode: document.getElementById('quizAnswers'),
+  buttonsNodes: document.getElementsByClassName('button'),
 };
 
 export default nodes;
