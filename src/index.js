@@ -10,7 +10,7 @@ import './styles/main.scss';
 import { timerConfig, quizConfig } from './js/config';
 
 const timer = new Timer(timerConfig);
-timer.startTimer((time) => console.log(time));
+timer.startTimer((counter) => console.log(counter));
 
 // eslint-disable-next-line no-unused-vars
 const quiz = new Quiz({
