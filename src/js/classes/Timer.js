@@ -53,9 +53,9 @@ export default class Timer {
    * on every tick containing the point of time
    * @param {function} callback 
    */
-  async startTimer(callback) {
+  async startTime(callback) {
     this.interval = setInterval(() => {
-      this.decrementTime(() => callback(this.counter));
+      this.decrementTime(() => typeof callback === 'function' && callback(this.counter));
     }, this.decrementValueMilliseconds);
   }
 }

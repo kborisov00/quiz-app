@@ -13,6 +13,12 @@ class Game {
 
     this.score = 0;
     this.scoreIncrement = gameConfig.scoreIncrement;
+
+    this.startTime = () => {
+      this.timer.resetTime();
+      this.timer.startTime((time) => this.handleTimer(time));
+    };
+    this.stopTime = () => this.timer.clearTime();
   }
 
   /**
@@ -118,22 +124,26 @@ class Game {
     this.setScoreNode();
   }
 
+  handleQuestionTimeout() {
+    this.startTime();
+    this.nextQuestion();
+    this.disableButtons(false);
+  }
+
   /**
-   * @desc this function sets the button state based on
+   * @desc this function stops the time,sets the button state based on
    * if the clicked button is the correct one or not, disables
    * every button, then waits small amount of time,
    * renders the next question and enables the buttons again
    * @param {node} clickedButton 
    */
   handleButtonClick(clickedButton) {
-    this.setButtonState(clickedButton);
+    this.stopTime();
+    this.setButtonState(clickedButton); // set button correct or wrong state
     this.setScore(clickedButton);
     this.disableButtons(true);
 
-    setTimeout(() => {
-      this.nextQuestion();
-      this.disableButtons(false);
-    }, gameConfig.questionIntervalMilliseconds);
+    setTimeout(() => this.handleQuestionTimeout(), gameConfig.questionIntervalMilliseconds);
   }
 
   /**
@@ -154,6 +164,10 @@ class Game {
   handleTimer(time) {
     const timeWrapper = document.getElementById('timeWrapper'); // eslint-disable-line no-unused-vars
     this.setTimeNode(time);
+
+    if (time === 0) {
+      console.log('game over');
+    }
   }
 
   /**
@@ -163,6 +177,7 @@ class Game {
     this.setQuestionNode();
     this.setButtonsNodes();
     this.setScoreNode();
+    this.setTimeNode();
   }
 
   /**
@@ -174,8 +189,7 @@ class Game {
   handleInit() {
     this.setButtonEventListeners();
     this.renderQuestion();
-
-    // this.timer.startTimer((time) => this.handleTimer(time));
+    this.startTime();
   }
 
   /**
