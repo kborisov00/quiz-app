@@ -74,7 +74,7 @@ class Game {
    * based on if the answer is correct or not
    * @param {node} clickedButton 
    */
-  isCorrect(clickedButton) {
+  isAnswerCorrect(clickedButton) {
     return clickedButton.innerText === this.quiz.getCurrentQuestion().correct_answer;
   }
 
@@ -86,7 +86,8 @@ class Game {
    * @param {boolean} isCorrect 
    */
   // eslint-disable-next-line class-methods-use-this
-  setButtonState(clickedButton, isCorrect) {
+  setButtonState(clickedButton) {
+    const isCorrect = this.isAnswerCorrect(clickedButton);
     clickedButton.classList.add(isCorrect ? 'button--correct' : 'button--wrong');
   }
 
@@ -98,7 +99,7 @@ class Game {
    * @param {node} clickedButton 
    */
   handleButtonClick(clickedButton) {
-    this.setButtonState(clickedButton, this.isCorrect(clickedButton));
+    this.setButtonState(clickedButton);
     this.disableButtons(true);
 
     setTimeout(() => {
