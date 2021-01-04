@@ -113,6 +113,21 @@ export default class Quiz {
   }
 
   /**
+   * @desc this function creates
+   * and returns a shuffled array with the
+   * correct answer combined with
+   * the incorrect ones
+   */
+  getCurrentAnswers() {
+    const answers = [
+      ...this.getCurrentQuestion().incorrect_answers,
+      this.getCurrentQuestion().correct_answer,
+    ];
+
+    return this.constructor.shuffleArray(answers);
+  }
+
+  /**
    * @desc this function returns a callback when the questions are fetched
    * @param {function} callback 
    */
