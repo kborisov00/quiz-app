@@ -28,7 +28,7 @@ class Game {
 
   /**
    * @desc this function shuffles the answers,
-   * then uses them to modify the button nodes
+   * then uses them to modify the button nodes' text
    */
   setButtonsNodes() {
     const buttons = this.nodes.buttonsNodes;

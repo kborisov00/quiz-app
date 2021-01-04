@@ -22,7 +22,9 @@ export default class Quiz {
 
   /**
    * @desc this function creates
-   * a shuffled copy of an array 
+   * a copy of the array, then 
+   * performs the Durstenfeld shuffle algorithm
+   * @return {array}
    * @param {array} array 
    */
   static shuffleArray(array) {
@@ -42,7 +44,7 @@ export default class Quiz {
    * decodes html entities
    * @param {array} questions 
    */
-  static decodeQuestions(questions) {
+  static parseQuestions(questions) {
     return questions.map((question) => {
       const parsedQuestion = { ...question };
       parsedQuestion.question = he.decode(parsedQuestion.question);
@@ -66,8 +68,9 @@ export default class Quiz {
 
   /**
    * @desc this function fetches
-   * the questions and returns
-   * a callback when its done
+   * the questions, sets some properties
+   * and returns an empty callback
+   * @return {function}
    * @param {function} callback 
    */
   async fetchQuestions(callback) {
@@ -75,7 +78,7 @@ export default class Quiz {
     const data = await response.json();
 
     if (response.status === 200) {
-      const questions = this.constructor.decodeQuestions(data.results);
+      const questions = this.constructor.parseQuestions(data.results);
       this.questions = questions;
       this.currentQuestion = questions[0];
 
@@ -100,7 +103,10 @@ export default class Quiz {
   }
 
   /**
-   * @desc this function returns the current question
+   * @desc this function creates an object
+   * with the current question, except
+   * it adds an index property
+   * @return {object}
    */
   getCurrentQuestion() {
     return { index: this.questions.indexOf(this.currentQuestion), ...this.currentQuestion };
