@@ -19,6 +19,7 @@ class Game {
     const shuffledAnswers = Quiz.shuffleArray(answers);
 
     for (let i = 0; i < buttons.length; i += 1) {
+      buttons[i].classList = 'button';
       buttons[i].innerText = shuffledAnswers[i];
     }
   }
@@ -32,21 +33,29 @@ class Game {
     this.nodes.timeNode.innerText = time;
   }
 
-  handleButtonClick() {
+  nextQuestion() {
     this.quiz.nextQuestion();
     this.renderQuestion();
+  }
+
+  handleButtonClick(btn) {
+    const hasCorrectAnswer = btn.innerText === this.quiz.getCurrentQuestion().correct_answer;
+    btn.classList.add(hasCorrectAnswer ? 'button--correct' : 'button--wrong');
+
+    setTimeout(() => this.nextQuestion(), 2000);
   }
 
   setButtonEventListeners() {
     const buttons = this.nodes.buttonsNodes;
     for (let i = 0; i < buttons.length; i += 1) {
-      buttons[i].addEventListener('click', () => this.handleButtonClick(), false);
+      buttons[i].addEventListener('click', () => this.handleButtonClick(buttons[i]), false);
     }
   }
 
   renderQuestion() {
     this.setQuestionNode();
     this.setButtonsNodes();
+    this.setTimeNode();
   }
 
   handleTimer(time) {
@@ -54,7 +63,7 @@ class Game {
     this.setTimeNode(time);
     
     // if (time < 5) {
-    //   // timeWrapper.classList.add('statusbar__time--danger');
+    //   timeWrapper.classList.add('statusbar__time--danger');
     // }
   }
 
@@ -67,13 +76,10 @@ class Game {
 
   init() {
     this.quiz.init(() => this.handleInit());
-  }
-}
+  } 
+       }
 
-export default (() => {
-  const game = new Game({
-    nodes: nodes,
-  });
-
+export default (() => { const game = new Game({ nodes: nodes, });
+   
   game.init();
 })();
