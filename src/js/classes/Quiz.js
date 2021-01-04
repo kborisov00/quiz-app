@@ -85,15 +85,6 @@ export default class Quiz {
     throw new Error('something went wrong..');
   }
 
-  // prevQuestion() {
-  //   const currentIndex = this.questions.indexOf(this.currentQuestion);
-  //   if (currentIndex > 0) {
-  //     this.currentQuestion = this.questions[currentIndex - 1];
-  //   } else {
-  //     throw new Error('This is the last question');
-  //   }
-  // }
-
   /**
    * @desc this function changes
    * the current question to the
