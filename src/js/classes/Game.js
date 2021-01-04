@@ -21,6 +21,8 @@ class Game {
     this.stopTime = () => this.timer.clearTime();
   }
 
+  // getters
+
   /**
    * @desc this function creates
    * and returns an array with the
@@ -34,6 +36,8 @@ class Game {
       this.quiz.getCurrentQuestion().correct_answer,
     ];
   }
+
+  // setters
 
   /**
    * @desc this function shuffles the answers,
@@ -68,31 +72,11 @@ class Game {
   }
 
   /**
-   * @desc this function switches
-   * to the next question and renders it
+   * @desc this function modifies time node's text
+   * @param {int} time 
    */
-  nextQuestion() {
-    this.quiz.nextQuestion();
-    this.renderQuestion();
-  }
-
-  /**
-   * @desc this function disables every button
-   * @param {boolean} isDisabled 
-   */
-  disableButtons(isDisabled) {
-    for (let i = 0; i < this.nodes.buttonsNodes.length; i += 1) {
-      this.nodes.buttonsNodes[i].disabled = isDisabled;
-    }
-  }
-
-  /**
-   * @desc this functions checks and returns boolean
-   * based on if the answer is correct or not
-   * @param {node} clickedButton 
-   */
-  isAnswerCorrect(clickedButton) {
-    return clickedButton.innerText === this.quiz.getCurrentQuestion().correct_answer;
+  setTimeNode(time = this.timer.getInitialTime()) {
+    this.nodes.timeNode.innerText = time;
   }
 
   /**
@@ -124,6 +108,24 @@ class Game {
     this.setScoreNode();
   }
 
+  /**
+   * @desc this function adds
+   * an event listener to every button
+   */
+  setButtonEventListeners() {
+    const buttons = this.nodes.buttonsNodes;
+    for (let i = 0; i < buttons.length; i += 1) {
+      buttons[i].addEventListener('click', () => this.handleButtonClick(buttons[i]), false);
+    }
+  }
+
+  // HANDLERS
+
+  /**
+   * @desc this starts the timer,
+   * renders the next questions and
+   * enables the buttons
+   */
   handleQuestionTimeout() {
     this.startTime();
     this.nextQuestion();
@@ -146,28 +148,24 @@ class Game {
     setTimeout(() => this.handleQuestionTimeout(), gameConfig.questionIntervalMilliseconds);
   }
 
-  /**
-   * @desc this function adds
-   * an event listener to every button
-   */
-  setButtonEventListeners() {
-    const buttons = this.nodes.buttonsNodes;
-    for (let i = 0; i < buttons.length; i += 1) {
-      buttons[i].addEventListener('click', () => this.handleButtonClick(buttons[i]), false);
-    }
-  }
-
-  setTimeNode(time = this.timer.getInitialTime()) {
-    this.nodes.timeNode.innerText = time;
-  }
-
   handleTimer(time) {
     const timeWrapper = document.getElementById('timeWrapper'); // eslint-disable-line no-unused-vars
     this.setTimeNode(time);
 
     if (time === 0) {
-      console.log('game over');
+      // window.location.reload();
     }
+  }
+
+  // OTHER
+
+  /**
+   * @desc this function switches
+   * to the next question and renders it
+   */
+  nextQuestion() {
+    this.quiz.nextQuestion();
+    this.renderQuestion();
   }
 
   /**
@@ -178,6 +176,25 @@ class Game {
     this.setButtonsNodes();
     this.setScoreNode();
     this.setTimeNode();
+  }
+
+  /**
+   * @desc this function disables every button
+   * @param {boolean} isDisabled 
+   */
+  disableButtons(isDisabled) {
+    for (let i = 0; i < this.nodes.buttonsNodes.length; i += 1) {
+      this.nodes.buttonsNodes[i].disabled = isDisabled;
+    }
+  }
+
+  /**
+   * @desc this functions checks and returns boolean
+   * based on if the answer is correct or not
+   * @param {node} clickedButton 
+   */
+  isAnswerCorrect(clickedButton) {
+    return clickedButton.innerText === this.quiz.getCurrentQuestion().correct_answer;
   }
 
   /**

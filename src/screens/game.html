@@ -9,39 +9,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- statusbar component -->
-    <div class="statusbar">
-        <div class="statusbar__user">
+    <div class="container">
+        <!-- statusbar component -->
+        <div class="statusbar">
+            <div class="statusbar__user">
 
-            <i class="statusbar__userIcon fas fa-user"></i>
+                <i class="statusbar__userIcon fas fa-user"></i>
 
-            <div class="statusbar__userInfo">
-                <span class="statusbar__userName">Klenki Klenk</span>
-                <span id="score" class="statusbar__userScore">273</span>
+                <div class="statusbar__userInfo">
+                    <span class="statusbar__userName">Klenki Klenk</span>
+                    <span id="score" class="statusbar__userScore">273</span>
+                </div>
+
             </div>
 
-        </div>
+            <div id="timeWrapper" class="statusbar__time">
+                <i class="statusbar__timeIcon far fa-clock"></i>
+                <span id="time" class="statusbar__timeText">34</span> 
+            </div>
+        </div> <!-- statusbar component -->
 
-        <div id="timeWrapper" class="statusbar__time">
-            <i class="statusbar__timeIcon far fa-clock"></i>
-            <span id="time" class="statusbar__timeText">34</span> 
-        </div>
-    </div> <!-- statusbar component -->
+        <!-- quiz block -->
+        <div class="quiz">
+            <div class="question">
+                <span id="counter" class="question__counter"></span>
+                <span id="question" class="question__text"><!-- question text goes here --></span>
+                <span class="question__icon">?</span>
+            </div>
 
-    <!-- quiz block -->
-    <div class="quiz">
-        <div class="question">
-            <span id="counter" class="question__counter"></span>
-            <span id="question" class="question__text"><!-- question text goes here --></span>
-            <span class="question__icon">?</span>
-        </div>
-
-        <div id="quizAnswers" class="quiz__answers">
-            <button class="button"></button>
-            <button class="button"></button>
-            <button class="button"></button>
-            <button class="button"></button>
-        </div>
-    </div> <!-- quiz block -->
+            <div id="quizAnswers" class="quiz__answers">
+                <button class="button"></button>
+                <button class="button"></button>
+                <button class="button"></button>
+                <button class="button"></button>
+            </div>
+        </div> <!-- quiz block -->
+    </div>
 </body>
 </html>
