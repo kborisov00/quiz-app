@@ -61,7 +61,7 @@ class Game {
 
   /**
    * @desc this function disables every button
-   * @param {boolean} disabled 
+   * @param {boolean} isDisabled 
    */
   disableButtons(isDisabled) {
     for (let i = 0; i < this.nodes.buttonsNodes.length; i += 1) {
