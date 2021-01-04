@@ -16,4 +16,5 @@ export const apiConfig = {
 
 export const gameConfig = {
   questionIntervalMilliseconds: 2000,
+  scoreIncrement: 100,
 };

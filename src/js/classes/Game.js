@@ -10,6 +10,9 @@ class Game {
 
     this.quiz = new Quiz(quizConfig);
     this.timer = new Timer(timerConfig);
+
+    this.score = 0;
+    this.scoreIncrement = gameConfig.scoreIncrement;
   }
 
   /**
@@ -48,6 +51,14 @@ class Game {
   setQuestionNode() {
     this.nodes.questionNode.innerText = this.quiz.getCurrentQuestion().question;
     this.nodes.counterNode.innerText = `${this.quiz.getCurrentQuestion().index + 1} / ${this.quiz.questions.length}`;
+  }
+
+  /**
+   * @desc this function modifies
+   * the score node's text
+   */
+  setScoreNode() {
+    this.nodes.scoreNode.innerText = this.score;
   }
 
   /**
@@ -92,14 +103,31 @@ class Game {
   }
 
   /**
+   * @desc this function increments or
+   * decrements the score based on if
+   * the clicked button is the correct
+   * one and then sets score node's text
+   * @param {node} clickedButton 
+   */
+  setScore(clickedButton) {
+    if (this.isAnswerCorrect(clickedButton)) {
+      this.score += this.scoreIncrement;
+    } else if (!this.isAnswerCorrect(clickedButton) && this.score > 0) {
+      this.score -= this.scoreIncrement;
+    }
+    this.setScoreNode();
+  }
+
+  /**
    * @desc this function sets the button state based on
-   * if the clicked button is the correct one, disables
+   * if the clicked button is the correct one or not, disables
    * every button, then waits small amount of time,
    * renders the next question and enables the buttons again
    * @param {node} clickedButton 
    */
   handleButtonClick(clickedButton) {
     this.setButtonState(clickedButton);
+    this.setScore(clickedButton);
     this.disableButtons(true);
 
     setTimeout(() => {
@@ -129,11 +157,12 @@ class Game {
   }
 
   /**
-   * @desc this function renders the question
+   * @desc this function renders everything on the page
    */
   renderQuestion() {
     this.setQuestionNode();
     this.setButtonsNodes();
+    this.setScoreNode();
   }
 
   /**
