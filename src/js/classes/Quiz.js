@@ -20,6 +20,11 @@ export default class Quiz {
     this.init();
   }
 
+  /**
+   * @desc this function creates
+   * a shuffled copy of an array 
+   * @param {array} array 
+   */
   static shuffleArray(array) {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i -= 1) {
@@ -32,6 +37,11 @@ export default class Quiz {
     return shuffledArray;
   }
 
+  /**
+   * @desc this function
+   * decodes html entities
+   * @param {array} questions 
+   */
   static decodeQuestions(questions) {
     return questions.map((question) => {
       const parsedQuestion = { ...question };
@@ -43,6 +53,9 @@ export default class Quiz {
     });
   }
 
+  /**
+   * @desc this function creates the api endpoint url
+   */
   createURL() {
     const url = new URL(this.baseAPI);
     url.searchParams.append(this.numberQuestionsQueryParam, this.numberQuestions);
@@ -51,6 +64,12 @@ export default class Quiz {
     return url;
   }
 
+  /**
+   * @desc this function fetches
+   * the questions and returns
+   * a callback when its done
+   * @param {function} callback 
+   */
   async fetchQuestions(callback) {
     const response = await fetch(this.url);
     const data = await response.json();
@@ -66,35 +85,41 @@ export default class Quiz {
     throw new Error('something went wrong..');
   }
 
-  prevQuestion() {
-    const currentIndex = this.questions.indexOf(this.currentQuestion);
-    if (currentIndex > 0) {
-      this.currentQuestion = this.questions[currentIndex - 1];
-    } else {
-      throw new Error('This is the last question');
-    }
-  }
+  // prevQuestion() {
+  //   const currentIndex = this.questions.indexOf(this.currentQuestion);
+  //   if (currentIndex > 0) {
+  //     this.currentQuestion = this.questions[currentIndex - 1];
+  //   } else {
+  //     throw new Error('This is the last question');
+  //   }
+  // }
 
+  /**
+   * @desc this function changes
+   * the current question to the
+   * next one in the array
+   */
   nextQuestion() {
     const currentIndex = this.questions.indexOf(this.currentQuestion);
     if (currentIndex < this.numberQuestions - 1) {
       this.currentQuestion = this.questions[currentIndex + 1];
     } else {
-      throw new Error('This is the last question');
+      throw new Error('no questions left');
     }
   }
 
+  /**
+   * @desc this function returns the current question
+   */
   getCurrentQuestion() {
     return { index: this.questions.indexOf(this.currentQuestion), ...this.currentQuestion };
   }
 
+  /**
+   * @desc this function returns a callback when the questions are fetched
+   * @param {function} callback 
+   */
   init(callback) {
     this.fetchQuestions(() => typeof callback === 'function' && callback());
   }
-
-  // startQuiz() {}
-
-  // previousQuestion() {}
-
-  // nextQuestion() {}
 }

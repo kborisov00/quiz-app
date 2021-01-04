@@ -10,8 +10,6 @@ class Game {
 
     this.quiz = new Quiz(quizConfig);
     this.timer = new Timer(timerConfig);
-
-    this.currentQuestion = {};
   }
 
   setButtonsNodes() {
@@ -26,18 +24,29 @@ class Game {
   }
 
   setQuestionNode() {
-    this.nodes.questionNode.innerText = this.currentQuestion.question;
-    this.nodes.counterNode.innerText = `${this.currentQuestion.index + 1} / ${this.quiz.questions.length}`;
+    this.nodes.questionNode.innerText = this.quiz.getCurrentQuestion().question;
+    this.nodes.counterNode.innerText = `${this.quiz.getCurrentQuestion().index + 1} / ${this.quiz.questions.length}`;
   }
 
   setTimeNode(time = this.timer.getInitialTime()) {
     this.nodes.timeNode.innerText = time;
   }
 
+  handleButtonClick() {
+    this.quiz.nextQuestion();
+    this.renderQuestion();
+  }
+
+  setButtonEventListeners() {
+    const buttons = this.nodes.buttonsNodes;
+    for (let i = 0; i < buttons.length; i += 1) {
+      buttons[i].addEventListener('click', () => this.handleButtonClick(), false);
+    }
+  }
+
   renderQuestion() {
     this.setQuestionNode();
     this.setButtonsNodes();
-    this.setTimeNode();
   }
 
   handleTimer(time) {
@@ -49,21 +58,21 @@ class Game {
     // }
   }
 
-  init() {
-    this.quiz.init(() => {
-      this.currentQuestion = this.quiz.getCurrentQuestion();
-      this.renderQuestion();
+  handleInit() {
+    this.setButtonEventListeners();
+    this.renderQuestion();
 
-      this.timer.startTimer((time) => this.handleTimer(time));
-    });
+    // this.timer.startTimer((time) => this.handleTimer(time));
+  }
+
+  init() {
+    this.quiz.init(() => this.handleInit());
   }
 }
 
 export default (() => {
   const game = new Game({
     nodes: nodes,
-    quiz: Quiz,
-    timer: Timer,
   });
 
   game.init();
