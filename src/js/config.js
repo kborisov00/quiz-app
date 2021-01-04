@@ -13,3 +13,7 @@ export const apiConfig = {
   numberQuestionsQueryParam: 'amount',
   questionsTypeQueryParam: 'type',
 };
+
+export const gameConfig = {
+  questionIntervalMilliseconds: 2000,
+};

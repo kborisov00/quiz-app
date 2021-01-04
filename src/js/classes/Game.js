@@ -2,7 +2,7 @@
 import Timer from './Timer';
 import Quiz from './Quiz';
 import nodes from '../nodes';
-import { timerConfig, quizConfig } from '../config';
+import { timerConfig, quizConfig, gameConfig } from '../config';
 
 class Game {
   constructor(config) {
@@ -105,7 +105,7 @@ class Game {
     setTimeout(() => {
       this.nextQuestion();
       this.disableButtons(false);
-    }, 2000);
+    }, gameConfig.questionIntervalMilliseconds);
   }
 
   /**
