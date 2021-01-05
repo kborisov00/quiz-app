@@ -113,6 +113,16 @@ export default class Quiz {
   }
 
   /**
+   * @desc this function returns boolean
+   * based on if the current question
+   * is the last one
+   * @return {boolean}
+   */
+  isLastQuestion() {
+    return this.getCurrentQuestion().index === this.questions.length - 1;
+  }
+
+  /**
    * @desc this function returns a callback when the questions are fetched
    * @param {function} callback 
    */

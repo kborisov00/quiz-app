@@ -141,19 +141,27 @@ class Game {
    */
   handleButtonClick(clickedButton) {
     this.stopTime();
-    this.setButtonState(clickedButton); // set button correct or wrong state
-    this.setScore(clickedButton);
     this.disableButtons(true);
+    this.setScore(clickedButton);
+    this.setButtonState(clickedButton); // set button to correct or wrong state
 
-    setTimeout(() => this.handleQuestionTimeout(), gameConfig.questionIntervalMilliseconds);
+    if (!this.quiz.isLastQuestion()) {
+      setTimeout(() => this.handleQuestionTimeout(), gameConfig.questionIntervalMilliseconds);
+    } else {
+      setTimeout(() => alert(`Your score is ${this.score}`), gameConfig.questionIntervalMilliseconds);
+    }
   }
 
+  /**
+   * @desc this function sets
+   * time node's text and handles timer
+   * @param {int} time 
+   */
   handleTimer(time) {
-    const timeWrapper = document.getElementById('timeWrapper'); // eslint-disable-line no-unused-vars
     this.setTimeNode(time);
 
     if (time === 0) {
-      // window.location.reload();
+      alert('Your time ran out');
     }
   }
 
