@@ -1,5 +1,5 @@
 // modules
-import Renderer from './Renderer';
+import Render from './Renderer';
 import Timer from './Timer';
 import Quiz from './Quiz';
 
@@ -12,7 +12,7 @@ class Game {
 
     this.quiz = new Quiz(quizConfig);
     this.timer = new Timer(timerConfig);
-    this.renderer = new Renderer();
+    this.render = new Render();
 
     this.score = 0;
     this.scoreIncrement = gameConfig.scoreIncrement;
@@ -37,7 +37,7 @@ class Game {
     } else if (!this.isAnswerCorrect(clickedButton) && this.score > 0) {
       this.score -= this.scoreIncrement;
     }
-    // set score node
+    this.render.setScoreNode(this.score);
   }
 
   /**
@@ -98,6 +98,11 @@ class Game {
     return clickedButton.innerText === this.quiz.getCurrentQuestion().correct_answer;
   }
 
+  setClassProperties() {
+    this.answers = this.quiz.getCurrentAnswers();
+    this.currentQuestion = this.quiz.getCurrentQuestion();
+  }
+
   /**
    * @desc this functions is called
    * after quiz initialization
@@ -105,12 +110,8 @@ class Game {
    * were fetched
    */
   handleInit() {
-    const answers = this.quiz.getCurrentAnswers();
-    const currentQuestion = this.quiz.getCurrentQuestion();
-
-    this.startTime();
-    this.renderer.renderQuestion(currentQuestion, answers);
-    this.setButtonEventListeners();
+    this.setClassProperties();
+    this.render.renderQuestion();
   }
 
   /**

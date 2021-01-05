@@ -1,10 +1,10 @@
 // modules
 import nodes from '../nodes';
 
-export default class Renderer {
+export default class Render {
   constructor(timer) {
     this.nodes = nodes;
-    this.timer = timer;
+    
   }
 
   /**
@@ -32,8 +32,8 @@ export default class Renderer {
    * @desc this function modifies
    * the score node's text
    */
-  setScoreNode() {
-    this.nodes.scoreNode.innerText = this.score;
+  setScoreNode(score) {
+    this.nodes.scoreNode.innerText = score;
   }
 
   /**
@@ -83,5 +83,8 @@ export default class Renderer {
     this.setButtonsNodes(answers);
     this.setQuestionNode(currentQuestion);
     this.setScoreNode();
+  }
+
+  init() {
   }
 }
